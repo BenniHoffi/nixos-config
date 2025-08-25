@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "benni";
@@ -19,8 +21,8 @@
   # environment.
   home.packages = [
     pkgs.git
-    pkgs.neovim
     pkgs.gh
+    pkgs.alacritty
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -38,6 +40,10 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+  programs.alacritty = {
+    enable = true;
+    theme = "gruvbox_dark";
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

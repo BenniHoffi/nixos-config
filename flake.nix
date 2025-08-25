@@ -26,7 +26,7 @@
         modules = [
           nvf.nixosModules.default
           ./hosts/desktop/configuration.nix
-          ./modules/nvf.nix
+          ./modules/nixos/nvf.nix
           inputs.home-manager.nixosModules.default
         ];
       };

@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../../modules/home-manager/alacritty.nix
+    ../../modules/home-manager/zsh.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "benni";
@@ -40,10 +44,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-  programs.alacritty = {
-    enable = true;
-    theme = "gruvbox_dark";
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

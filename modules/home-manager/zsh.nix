@@ -14,8 +14,8 @@
     };
 
     initContent = ''
-      ns() { sudo nixos-rebuild switch --flake /etc/nixos#"$1"; }
-      hm() { home-manager switch --flake ~/nix-config#"$1"; }
+      ns() { sudo nixos-rebuild switch --flake ~/nixos-config#"$1"; }
+      hm() { home-manager switch --flake ~/nixos-config#"$1"; }
     '';
 
     shellAliases = {

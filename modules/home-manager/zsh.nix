@@ -8,16 +8,13 @@
 
     oh-my-zsh = {
       enable = true;
-      them = "gruvbox";
+      theme = "gruvbox-zsh/gruvbox";
+      custom = "$HOME/.config/oh-my-zsh/custom";
       plugins = ["git" "z" "fzf" "colored-man-pages"];
     };
 
-    sessionVariables = {
-      SOLARIZED_THEME = "dark";
-    };
-
-    initExtra = ''
-      ns() { sudo nixos-rebuild switch --flake ~/nixos-config#"$1"; }
+    initContent = ''
+      ns() { sudo nixos-rebuild switch --flake /etc/nixos#"$1"; }
       hm() { home-manager switch --flake ~/nix-config#"$1"; }
     '';
 
@@ -29,21 +26,17 @@
       lt = "eza --tree --level=2 --icons --group-directories-first";
       lgt = "eza --tree --level=3 --git --icons --group-directories-first";
     };
-    home.packages = with pkgs; [
-      eza
-      fzf
-      zsh-autosuggestions
-      zsh-syntax-highlighting
-    ];
-
-    # Provide the Gruvbox Zsh theme to Oh My Zsh
-    home.file.".oh-my-zsh/custom/themes/gruvbox.zsh-theme".source =
-      pkgs.fetchFromGitHub {
-        owner = "sbugzu";
-        repo = "gruvbox-zsh";
-        rev = "master";
-        sha256 = "sha256-1ibn2pd04rj4w66izn1pi2vkawvlx9c0vzalpcm0i11q5hybc4d7";
-      }
-      + "/gruvbox.zsh-theme";
+  };
+  home.packages = with pkgs; [
+    eza
+    fzf
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+  ];
+  home.file.".config/oh-my-zsh/custom/themes/gruvbox-zsh".source = pkgs.fetchFromGitHub {
+    owner = "sbugzu";
+    repo = "gruvbox-zsh";
+    rev = "c54443c8d3da35037b7ae3ca73b30b45bc91a9e7";
+    sha256 = "sha256-pxG2PCw4hAgqu1T9DVjqdHM1t4g32B+N4URmAtoVdsU=";
   };
 }

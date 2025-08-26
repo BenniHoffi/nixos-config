@@ -93,11 +93,14 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.benni = {
     isNormalUser = true;
     description = "Benni";
     extraGroups = ["networkmanager" "wheel"];
+    useDefaultShell = true;
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird

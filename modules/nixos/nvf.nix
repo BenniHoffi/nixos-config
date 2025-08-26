@@ -13,7 +13,6 @@
 
         statusline.lualine = {
           enable = true;
-          theme = "gruvbox";
         };
         formatter.conform-nvim.enable = true;
 
@@ -26,9 +25,9 @@
         };
 
         options = {
-          tabstop = 4;
+          tabstop = 2;
           shiftwidth = 0;
-          softtabstop = 4;
+          softtabstop = 2;
           autoindent = true;
         };
 
@@ -84,11 +83,51 @@
         };
 
         telescope.enable = true;
+
+        extraPlugins = {
+          vim-tmux-navigator = {
+            package = pkgs.vimPlugins.vim-tmux-navigator;
+          };
+        };
+
         lazy.plugins = {
           "autoclose.nvim" = {
             package = pkgs.vimPlugins.autoclose-nvim;
             setupModule = "autoclose";
           };
+          #          "vim-tmux-navigator" = {
+          #            package = pkgs.vimPlugins.vim-tmux-navigator;
+          #            cmd = [
+          #              "TmuxNavigateLeft"
+          #              "TmuxNavigateDown"
+          #              "TmuxNavigateUp"
+          #              "TmuxNavigateRight"
+          #              "TmuxNavigatePrevious"
+          #              "TmuxNavigatorProcessList"
+          #            ];
+          #            keys = [
+          #              {
+          #                key = "<c-h>";
+          #                action = "<cmd><C-U>TmuxNavigateLeft<cr>";
+          #              }
+          #              {
+          #                key = "<c-j>";
+          #                action = "<cmd><C-U>TmuxNavigateDown<cr>";
+          #              }
+          #              {
+          #                key = "<c-k>";
+          #                action = "<cmd><C-U>TmuxNavigateUp<cr>";
+          #              }
+          #              {
+          #                key = "<c-l>";
+          #                action = "<cmd><C-U>TmuxNavigateRight<cr>";
+          #              }
+          #              {
+          #                key = "<c-\\>";
+          #                action = "<cmd><C-U>TmuxNavigatePrevious<cr>";
+          #              }
+          #            ];
+          #          };
         };
       };
     };

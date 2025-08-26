@@ -4,8 +4,7 @@
   ...
 }: {
   imports = [
-    ../../modules/home-manager/alacritty.nix
-    ../../modules/home-manager/zsh.nix
+    ../../modules/home-manager
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

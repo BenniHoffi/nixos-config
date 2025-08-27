@@ -25,7 +25,7 @@
           family = "MartianMono Nerd Font";
           style = "Bold Italic";
         };
-        size = 14;
+        size = 12;
       };
     };
   };

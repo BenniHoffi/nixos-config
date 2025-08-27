@@ -39,7 +39,7 @@
         };
         modules = [
           nvf.homeManagerModules.default
-          ./modules/home-manager
+          ./hosts/macbook/home.nix
           ./modules/nixos/nvf.nix
         ];
       };

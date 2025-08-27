@@ -18,6 +18,7 @@
     self,
     nixpkgs,
     nvf,
+    home-manager,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -28,6 +29,18 @@
           ./hosts/desktop/configuration.nix
           ./modules/nixos/nvf.nix
           inputs.home-manager.nixosModules.default
+        ];
+      };
+    };
+    homeConfigurations = {
+      macbook = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+        };
+        modules = [
+          nvf.homeManagerModules.default
+          ./modules/home-manager
+          ./modules/nixos/nvf.nix
         ];
       };
     };

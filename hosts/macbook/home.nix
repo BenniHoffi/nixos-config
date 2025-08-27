@@ -89,6 +89,7 @@
       };
     };
   };
+  alacrittyFontsize = 14;
   programs.tmux = {
     shell = "${pkgs.zsh}/bin/zsh";
     extraConfig = ''

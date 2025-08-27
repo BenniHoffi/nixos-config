@@ -52,6 +52,10 @@
           enable = true;
           formatOnSave = true;
           inlayHints.enable = true;
+          servers = {
+            vue_ls = {};
+            vtsls = {};
+          };
         };
 
         languages = {
@@ -62,6 +66,7 @@
           html.enable = true;
           nix.enable = true;
           rust.enable = true;
+          markdown.enable = true;
         };
 
         autocomplete = {
@@ -70,7 +75,17 @@
         };
 
         filetree = {
-          neo-tree.enable = true;
+          neo-tree = {
+            enable = true;
+            setupOpts = {
+              filesystem = {
+                filtered_items = {
+                  visible = true;
+                  hide_dotfiles = false;
+                };
+              };
+            };
+          };
         };
 
         tabline = {
@@ -83,6 +98,11 @@
         };
 
         telescope.enable = true;
+
+        extraPackages = with pkgs; [
+          vue-language-server
+          vtsls
+        ];
 
         extraPlugins = {
           vim-tmux-navigator = {

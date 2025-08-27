@@ -11,10 +11,23 @@
           style = "dark";
         };
 
-        statusline.lualine = {
+        statusline.lualine.enable = true;
+
+        formatter.conform-nvim = {
           enable = true;
+          setupOpts = {
+            formatters_by_ft = {
+              javascript = ["prettier"];
+              typescript = ["prettier"];
+              vue = ["prettier"];
+              json = ["prettier"];
+              css = ["prettier"];
+              html = ["prettier"];
+              markdown = ["prettier"];
+              nix = ["alejandra"];
+            };
+          };
         };
-        formatter.conform-nvim.enable = true;
 
         clipboard = {
           enable = true;
@@ -45,7 +58,9 @@
 
         treesitter = {
           enable = true;
-          autotagHtml = true;
+          grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            vue
+          ];
         };
 
         lsp = {
@@ -54,6 +69,7 @@
           inlayHints.enable = true;
           servers = {
             vue_ls = {};
+            eslint = {};
             vtsls = {};
           };
         };
@@ -62,7 +78,6 @@
           enableTreesitter = true;
           enableFormat = true;
 
-          ts.enable = true;
           html.enable = true;
           nix.enable = true;
           rust.enable = true;
@@ -102,6 +117,8 @@
         extraPackages = with pkgs; [
           vue-language-server
           vtsls
+          nodePackages.prettier
+          alejandra
         ];
 
         extraPlugins = {
@@ -115,39 +132,13 @@
             package = pkgs.vimPlugins.autoclose-nvim;
             setupModule = "autoclose";
           };
-          #          "vim-tmux-navigator" = {
-          #            package = pkgs.vimPlugins.vim-tmux-navigator;
-          #            cmd = [
-          #              "TmuxNavigateLeft"
-          #              "TmuxNavigateDown"
-          #              "TmuxNavigateUp"
-          #              "TmuxNavigateRight"
-          #              "TmuxNavigatePrevious"
-          #              "TmuxNavigatorProcessList"
-          #            ];
-          #            keys = [
-          #              {
-          #                key = "<c-h>";
-          #                action = "<cmd><C-U>TmuxNavigateLeft<cr>";
-          #              }
-          #              {
-          #                key = "<c-j>";
-          #                action = "<cmd><C-U>TmuxNavigateDown<cr>";
-          #              }
-          #              {
-          #                key = "<c-k>";
-          #                action = "<cmd><C-U>TmuxNavigateUp<cr>";
-          #              }
-          #              {
-          #                key = "<c-l>";
-          #                action = "<cmd><C-U>TmuxNavigateRight<cr>";
-          #              }
-          #              {
-          #                key = "<c-\\>";
-          #                action = "<cmd><C-U>TmuxNavigatePrevious<cr>";
-          #              }
-          #            ];
-          #          };
+          "nvim-ts-autotag" = {
+            package = pkgs.vimPlugins.nvim-ts-autotag;
+            setupModule = "nvim-ts-autotag";
+            setupOpts = {
+              filetypes = ["html" "vue"];
+            };
+          };
         };
       };
     };

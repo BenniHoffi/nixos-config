@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+
+{
   programs.zsh = {
     enable = true;
 
@@ -25,6 +27,7 @@
       lg = "eza -lha --git --icons --group-directories-first";
       lt = "eza --tree --level=2 --icons --group-directories-first";
       lgt = "eza --tree --level=3 --git --icons --group-directories-first";
+      cd = "z";
     };
   };
   home.packages = with pkgs; [

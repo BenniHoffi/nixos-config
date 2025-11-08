@@ -22,7 +22,7 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
-  networking.hostname = "macbook-nixos";
+  networking.hostName = "macbook-nixos";
   networking.wireless.iwd = {
     enable = true;
     settings.General.EnableNetworkConfiguration = true;

@@ -12,12 +12,16 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     nvf,
+    niri,
     home-manager,
     ...
   } @ inputs: {
@@ -32,13 +36,15 @@
         ];
       };
       macbook = nixpkgs.lib.nixosSystem {
-	specialArgs = {inherit inputs;};
-	modules = [
-	  nvf.nixosModules.default
-	  ./hosts/macbook-nixos/configuration.nix
-	  ./modules/nixos/nvf.nix
-	  inputs.home-manager.nixosModules.default
-	];
+        specialArgs = {inherit inputs;};
+        modules = [
+          nvf.nixosModules.default
+          ./hosts/macbook-nixos/configuration.nix
+          ./modules/nixos/nvf.nix
+          ./modules/nixos/niri.nix
+          home-manager.nixosModules.default
+          niri.nixosModules.niri
+        ];
       };
     };
     homeConfigurations = {
@@ -53,5 +59,6 @@
         ];
       };
     };
+    nixpkgs.overlays = [inputs.niri.overlays];
   };
 }

@@ -5,5 +5,6 @@
     ./tmux.nix
     ./z.nix
     ./bun.nix
+    ./lazygit.nix
   ];
- }
+}

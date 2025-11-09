@@ -33,16 +33,17 @@
           nvf.nixosModules.default
           ./hosts/desktop/configuration.nix
           ./modules/nixos/nvf.nix
-          inputs.home-manager.nixosModules.default
+          home-manager.nixosModules.default
         ];
       };
       macbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          home-manager.nixosModules.home-manager
+          niri.nixosModules.niri
           nvf.nixosModules.default
           ./hosts/macbook-nixos/configuration.nix
           ./modules/nixos/nvf.nix
-          home-manager.nixosModules.default
         ];
       };
     };
@@ -59,7 +60,7 @@
       };
     };
     nixpkgs.overlays = [
-      inputs.niri.overlays.niri
+      niri.overlays.niri
     ];
   };
 }

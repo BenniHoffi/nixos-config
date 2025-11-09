@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.niri.homeModules.niri
     ../../modules/home-manager
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -24,11 +23,12 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.git
-    pkgs.gh
-    pkgs.alacritty
-    pkgs.ripgrep
+  home.packages = with pkgs; [
+    git
+    gh
+    alacritty
+    ripgrep
+    fuzzel
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -61,23 +61,19 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
+  programs.waybar = {
+    enable = true;
+    settings.mainBar.layer = "top";
+    systemd.enable = true;
+  };
 
   programs.niri = {
-    enable = true;
-    package = pkgs.niri;
     settings = {
       outputs."eDP-1" = {
         scale = 2.0;
-        mode = {
-          width = 3024;
-          height = 1890;
-        };
-        position = {
-          x = 0;
-          y = 0;
-        };
         background-color = "#1e1e2e";
       };
+      environment."NIXOS_OZONE_WL" = "1";
       binds = {
         # Spawn a terminal
         "Mod+Return".action.spawn = "alacritty";

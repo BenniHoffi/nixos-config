@@ -55,11 +55,12 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "niri";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -81,13 +82,17 @@
   #   pulse.enable = true;
   # };
 
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   users.users.benni = {
     isNormalUser = true;
     description = "Benni";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "video" "render" "input"];
     useDefaultShell = true;
     packages = with pkgs; [
       kdePackages.kate
@@ -96,10 +101,12 @@
   };
 
   home-manager = {
+    useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs;};
     users = {
       "benni" = import ./home.nix;
     };
+    backupFileExtension = "backup";
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -112,6 +119,11 @@
   fonts.packages = with pkgs; [
     nerd-fonts.martian-mono
   ];
+
+  environment.sessionVariables = {
+    XDG_SESSION_TYPE = "wayland";
+    NIRI_BACKEND = "auto";
+  };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).

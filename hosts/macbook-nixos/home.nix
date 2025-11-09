@@ -1,9 +1,11 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
+    inputs.niri.homeModules.niri
     ../../modules/home-manager
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -58,6 +60,32 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+  };
+
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+    settings = {
+      outputs."eDP-1" = {
+        scale = 2.0;
+        mode = {
+          width = 3024;
+          height = 1890;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+        background-color = "#1e1e2e";
+      };
+      binds = {
+        # Spawn a terminal
+        "Mod+Return".action.spawn = "alacritty";
+
+        # Close the focused window
+        "Mod+Q".action.quit.skip-confirmation = true;
+      };
+    };
   };
 
   # Home Manager can also manage your environment variables through

@@ -14,6 +14,7 @@
     };
     niri = {
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -41,9 +42,7 @@
           nvf.nixosModules.default
           ./hosts/macbook-nixos/configuration.nix
           ./modules/nixos/nvf.nix
-          ./modules/nixos/niri.nix
           home-manager.nixosModules.default
-          niri.nixosModules.niri
         ];
       };
     };
@@ -59,6 +58,8 @@
         ];
       };
     };
-    nixpkgs.overlays = [inputs.niri.overlays];
+    nixpkgs.overlays = [
+      inputs.niri.overlays.niri
+    ];
   };
 }

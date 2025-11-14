@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  imports = [inputs.tmux-which-key.homeManagerModules.default];
   programs.tmux = {
     enable = true;
     sensibleOnTop = true;
@@ -8,10 +14,13 @@
     shortcut = "Space";
     escapeTime = 0;
     terminal = "alacritty";
+    keyMode = "vi";
+    tmux-which-key.enable = true;
     plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator
-      tmux-which-key
       gruvbox
+      vim-tmux-navigator
+      yank
+      better-mouse-mode
     ];
     extraConfig = ''
       set-option -sa terminal-overrides ",alacritty:Tc"

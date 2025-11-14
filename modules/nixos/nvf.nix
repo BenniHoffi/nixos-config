@@ -126,9 +126,9 @@
           alejandra
         ];
 
-        extraPlugins = {
+        extraPlugins = with pkgs.vimPlugins; {
           vim-tmux-navigator = {
-            package = pkgs.vimPlugins.vim-tmux-navigator;
+            package = vim-tmux-navigator;
           };
         };
 

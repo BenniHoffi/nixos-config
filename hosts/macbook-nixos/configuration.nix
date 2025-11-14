@@ -16,6 +16,7 @@
   ];
   # Specify path to peripheral firmware files.
   hardware.asahi.peripheralFirmwareDirectory = ./firmware;
+  hardware.graphics.enable = true;
   hardware.bluetooth.enable = true;
 
   # Use the systemd-boot EFI boot loader.
@@ -60,7 +61,10 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "niri";
+
+  services.libinput.touchpad = {
+    disableWhileTyping = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -82,10 +86,11 @@
   #   pulse.enable = true;
   # };
 
-  programs.niri = {
+  programs.hyprland = {
     enable = true;
-    package = pkgs.niri;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   };
+
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 

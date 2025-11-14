@@ -12,8 +12,11 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+    };
+    tmux-which-key = {
+      url = "github:higherorderfunctor/tmux-which-key/feat/adds-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -22,8 +25,9 @@
     self,
     nixpkgs,
     nvf,
-    niri,
     home-manager,
+    hyprland,
+    tmux-which-key,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -61,6 +65,7 @@
     };
     nixpkgs.overlays = [
       niri.overlays.niri
+      tmux-which-key.overlays.default
     ];
   };
 }

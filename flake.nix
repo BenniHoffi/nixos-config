@@ -64,7 +64,6 @@
       };
     };
     nixpkgs.overlays = [
-      niri.overlays.niri
       tmux-which-key.overlays.default
     ];
   };

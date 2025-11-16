@@ -6,6 +6,7 @@
 }: {
   imports = [
     ../../modules/home-manager
+    ../../modules/home-manager/hyprland.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -23,74 +24,6 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   alacrittyFontsize = 11;
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings = {
-      "$mod" = "SUPER";
-      bind = [
-        # compositor commands
-        "$mod SHIFT, E, exec, pkill Hyprland"
-        "$mod, Q, killactive,"
-        "$mod, F, fullscreen,"
-        "$mod, G, togglegroup,"
-        "$mod SHIFT, N, changegroupactive, f"
-        "$mod SHIFT, P, changegroupactive, b"
-        "$mod, R, togglesplit,"
-        "$mod, T, togglefloating,"
-        "$mod, P, pseudo,"
-        "$mod ALT, ,resizeactive,"
-        "$mod, Return, exec, alacritty"
-        "$mod, Space, exec, fuzzel"
-        "$mod, M, exit"
-
-        # move focus
-        "$mod, left, movefocus, l"
-        "$mod, H, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, L, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, K, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod, J, movefocus, d"
-
-        # workspaces
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-
-        # cycle workspaces
-        "$mod, Minus, workspace, m-1"
-        "$mod, Plus, workspace, m+1"
-      ];
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-        "$mod ALT, mouse:272, resizewindow"
-      ];
-      bindel = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ];
-      bindl = [
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        # Requires playerctl
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioNext, exec, playerctl next"
-      ];
-      input = {
-        kb_layout = "de";
-      };
-    };
-  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

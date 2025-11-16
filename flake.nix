@@ -44,7 +44,6 @@
         specialArgs = {inherit inputs;};
         modules = [
           home-manager.nixosModules.home-manager
-          niri.nixosModules.niri
           nvf.nixosModules.default
           ./hosts/macbook-nixos/configuration.nix
           ./modules/nixos/nvf.nix

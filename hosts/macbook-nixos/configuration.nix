@@ -72,19 +72,13 @@
     variant = "";
   };
 
+  services.libinput.enable = true;
+
   # Configure console keymap
   console.keyMap = "de";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
 
   programs.hyprland = {
     enable = true;
@@ -117,6 +111,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
+  nix.settings.trusted-users = ["root" "benni"];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   programs.firefox.enable = true;
 
@@ -127,7 +122,10 @@
 
   environment.sessionVariables = {
     XDG_SESSION_TYPE = "wayland";
-    NIRI_BACKEND = "auto";
+  };
+
+  environment.variables = {
+    OLLAMA_VULKAN = 1;
   };
 
   # List packages installed in system profile.

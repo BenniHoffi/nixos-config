@@ -6,8 +6,8 @@
 }: {
   imports = [
     ../../modules/home-manager
+    # ../../modules/home-manager/waybar.nix
     ../../modules/home-manager/hyprland.nix
-    ../../modules/home-manager/waybar.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -34,6 +34,11 @@
     alacritty
     ripgrep
     fuzzel
+    nodejs
+    drawio
+    devenv
+    direnv
+    audacity
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -65,11 +70,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-  };
-  programs.waybar = {
-    enable = true;
-    settings.mainBar.layer = "top";
-    systemd.enable = true;
   };
 
   # Home Manager can also manage your environment variables through

@@ -2,9 +2,7 @@
   config,
   pkgs,
   ...
-}: 
-
-{
+}: {
   programs.zsh = {
     enable = true;
 
@@ -12,7 +10,7 @@
       enable = true;
       theme = "gruvbox-zsh/gruvbox";
       custom = "$HOME/.config/oh-my-zsh/custom";
-      plugins = ["git" "z" "fzf" "colored-man-pages"];
+      plugins = ["git" "z" "fzf" "colored-man-pages" "direnv"];
     };
 
     initContent = ''
@@ -33,7 +31,6 @@
   home.packages = with pkgs; [
     eza
     fzf
-    zsh-autosuggestions
     zsh-syntax-highlighting
   ];
   home.file.".config/oh-my-zsh/custom/themes/gruvbox-zsh".source = pkgs.fetchFromGitHub {

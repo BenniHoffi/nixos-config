@@ -144,6 +144,13 @@
               filetypes = ["html" "vue"];
             };
           };
+          "auto-session" = {
+            package = pkgs.vimPlugins.auto-session;
+            setupModule = "auto-session";
+            setupOpts = {
+              suppressed_dirs = ["~/" "~/Projects" "~/Downloads" "/"];
+            };
+          };
         };
       };
     };

@@ -1,6 +1,7 @@
 {...}: {
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     settings = {
       "$mod" = "SUPER";
       bind = [
@@ -66,12 +67,18 @@
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
       ];
+      exec-once = [
+        "waybar"
+      ];
       gestures = {
         workspace_swipe = true;
-        workspace_swipe_forever = true;
+        workspace_swipe_invert = false;
       };
       input = {
         kb_layout = "de";
+        touchpad = {
+          disable_while_typing = true;
+        };
       };
     };
   };
